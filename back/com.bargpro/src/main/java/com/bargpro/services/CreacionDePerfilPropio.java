@@ -1,4 +1,4 @@
-package com.bargpro.controllers;
+package com.bargpro.services;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -7,13 +7,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import com.bargpro.dao.UsuarioDAO;
+
 import com.bargpro.entities.DatosUsuario;
 import com.bargpro.entities.Estudio;
 import com.bargpro.entities.Experiencia;
@@ -22,41 +18,15 @@ import com.bargpro.entities.ImagenProyecto;
 import com.bargpro.entities.Proyecto;
 import com.bargpro.entities.RedSocial;
 import com.bargpro.entities.Usuario;
-import com.bargpro.services.CreacionDePerfilPropio;
 
-@RestController
-@RequestMapping("api")
-public class UsuarioController {
-
-	@Autowired
-	private UsuarioDAO dao;
+@Repository
+@Transactional
+public class CreacionDePerfilPropio {
+	
 
 	@PersistenceContext
 	private EntityManager em;
 
-	@GetMapping("/usuarios")
-	@Transactional
-	public List<Usuario> getUsuarios() {
-
-		return dao.getListaUsuarios();
-
-	}
-
-	@GetMapping("/usuarios/{id}")
-	@Transactional
-	public Usuario getUsuario(@PathVariable Integer id) {
-
-		return dao.getUsuario(id);
-
-	}
-
-	/////////////////////////////////////////////////////
-
-	//////////////////// BORRAR ///////////////////////
-
-	////////////////// DESPUES DE ////////////////////
-
-	/////////////////// PRUEBAS ////////////////////////
 
 	// DatosUsuario
 	@Transactional
@@ -172,7 +142,6 @@ public class UsuarioController {
 
 		em.persist(proyecto);
 	}
-
 	@Transactional
 	public void crearImagenProyecto() {
 
@@ -183,7 +152,6 @@ public class UsuarioController {
 		em.persist(imagenProyecto);
 
 	}
-
 	@Transactional
 	public void elGranCreador() {
 
@@ -196,9 +164,8 @@ public class UsuarioController {
 		List<RedSocial> rs = new ArrayList<>();
 		List<ImagenProyecto> ip = new ArrayList<>();
 
-		crearDatosUsuario();
 		for (int i = 0; i < 2; i++) {
-
+			
 			crearExperiencia();
 			crearEstudio();
 			crearHabilidad();
@@ -206,50 +173,48 @@ public class UsuarioController {
 			crearImagenProyecto();
 			crearProyecto();
 
-			Experiencia e1 = em.find(Experiencia.class, i + 1);
-
+			Experiencia e1 = em.find(Experiencia.class, i+1);
+			
 			exp.add(e1);
-
-			Estudio e2 = em.find(Estudio.class, i + 1);
-
+			
+			Estudio e2 = em.find(Estudio.class, i+1);
+			
 			est.add(e2);
-
-			Habilidad e3 = em.find(Habilidad.class, i + 1);
-
+			
+			Habilidad e3 = em.find(Habilidad.class, i+1);
+			
 			hab.add(e3);
-
-			RedSocial e4 = em.find(RedSocial.class, i + 1);
-
+			
+			RedSocial e4 = em.find(RedSocial.class, i+1);
+			
 			rs.add(e4);
-
-			ImagenProyecto e5 = em.find(ImagenProyecto.class, i + 1);
-
+			
+			
+			ImagenProyecto e5 = em.find(ImagenProyecto.class, i+1);
+			
 			ip.add(e5);
-
-			Proyecto e6 = em.find(Proyecto.class, i + 1);
-
+			
+			Proyecto e6 = em.find(Proyecto.class, i+1);
+			
 			pro.add(e6);
 
 		}
+		
+		Proyecto p1 = em.find(Proyecto.class, 1);
 
+		p1.setImagenes(ip);
+		
+		em.merge(p1);
+	
+		
 		usuario.setDatosUsuario(em.find(DatosUsuario.class, 1));
 		usuario.setExperiencias(exp);
 		usuario.setEstudios(est);
 		usuario.setHabilidades(hab);
 		usuario.setProyectos(pro);
 		usuario.setRedesSociales(rs);
-
+		
 		em.persist(usuario);
-	}
-
-	@GetMapping("/usuario/test")
-	@Transactional
-	public String getUsuarioss() {
-
-		elGranCreador();
-
-		return "Exito";
-
 	}
 
 }
