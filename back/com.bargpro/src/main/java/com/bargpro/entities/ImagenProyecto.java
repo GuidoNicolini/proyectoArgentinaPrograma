@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -43,7 +44,7 @@ public class ImagenProyecto {
 	public void setLinkImagen(String linkImagen) {
 		this.linkImagen = linkImagen;
 	}
-	
+
 	
 	
 }

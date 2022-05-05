@@ -4,9 +4,11 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -18,17 +20,30 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@OneToOne
+	
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "usuario_id")
 	private DatosUsuario datosUsuario;
-	@OneToMany(cascade = CascadeType.ALL)
+	
+	
+	@OneToMany(cascade = CascadeType.ALL , mappedBy = "usuario" , fetch = FetchType.LAZY)
 	private List<Experiencia> experiencias;
-	@OneToMany(cascade = CascadeType.ALL)
+	
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario" , fetch = FetchType.LAZY)
 	private List<Estudio> estudios;
-	@OneToMany(cascade = CascadeType.ALL)
+	
+	
+	@OneToMany(cascade = CascadeType.ALL , mappedBy = "usuario" , fetch = FetchType.LAZY)
 	private List<Habilidad> habilidades;
-	@OneToMany(cascade = CascadeType.ALL)
+	
+	
+	@OneToMany(cascade = CascadeType.ALL , mappedBy = "usuario" , fetch = FetchType.LAZY)
 	private List<Proyecto> proyectos;
-	@OneToMany(cascade = CascadeType.ALL)
+	
+	@OneToMany(cascade = CascadeType.ALL ,fetch = FetchType.LAZY)
+	@JoinColumn(name = "usuario_id")
 	private List<RedSocial> redesSociales;
 
 	public Usuario() {
