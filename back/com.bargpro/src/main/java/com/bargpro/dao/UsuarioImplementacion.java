@@ -38,7 +38,67 @@ public class UsuarioImplementacion implements UsuarioDAO {
 		return usuario;
 	}
 
+	@Override
+	public void guardarUsuario(Usuario usuario) {
 
-	
+		if (!(usuario.getDatosUsuario() == null)) {
+			em.persist(usuario.getDatosUsuario());
+		}
+
+		if (!(usuario.getEstudios() == null)) {
+
+			for (int i = 0; i < usuario.getEstudios().size(); i++) {
+
+				em.persist(usuario.getEstudios().get(i));
+
+			}
+
+			em.persist(usuario.getEstudios());
+		}
+
+		if (!(usuario.getExperiencias() == null)) {
+
+			for (int i = 0; i < usuario.getExperiencias().size(); i++) {
+
+				em.persist(usuario.getExperiencias().get(i));
+
+			}
+
+			em.persist(usuario.getExperiencias());
+		}
+
+		if (!(usuario.getHabilidades() == null)) {
+
+			for (int i = 0; i < usuario.getHabilidades().size(); i++) {
+
+				em.persist(usuario.getHabilidades().get(i));
+
+			}
+			em.persist(usuario.getHabilidades());
+		}
+
+		if (!(usuario.getRedesSociales() == null)) {
+
+			for (int i = 0; i < usuario.getRedesSociales().size(); i++) {
+
+				em.persist(usuario.getRedesSociales().get(i));
+
+			}
+			em.persist(usuario.getRedesSociales());
+		}
+
+		if (!(usuario.getProyectos() == null)) {
+
+			for (int i = 0; i < usuario.getProyectos().size(); i++) {
+
+				em.persist(usuario.getProyectos().get(i));
+
+			}
+			em.persist(usuario.getProyectos());
+		}
+
+		em.persist(usuario);
+
+	}
 
 }
