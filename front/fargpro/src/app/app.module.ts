@@ -15,6 +15,9 @@ import { HabilidadesComponent } from './componentes/habilidades/habilidades.comp
 import { HabilidadComponent } from './componentes/habilidad/habilidad.component';
 import { ProyectosComponent } from './componentes/proyectos/proyectos.component';
 import { ProyectoComponent } from './componentes/proyecto/proyecto.component';
+import {  HttpClientModule } from '@angular/common/http';
+import { DatosService } from './service/datos.service';
+import { UsuarioService } from './service/usuario.service';
 
 @NgModule({
   declarations: [
@@ -33,8 +36,9 @@ import { ProyectoComponent } from './componentes/proyecto/proyecto.component';
     ProyectoComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule
+  BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

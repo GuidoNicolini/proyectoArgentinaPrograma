@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "estudios")
 public class Estudio {
@@ -24,32 +26,39 @@ public class Estudio {
 
 	private String titulo;
 
-	@Temporal(TemporalType.DATE)
-	private Calendar fechaInicio;
+	
+	private String fechaInicio;
 
-	@Temporal(TemporalType.DATE)
-	private Calendar fechaFinalizacion;
+	
+	private String fechaFinalizacion;
 
-	private String Institucion;
+	private String institucion;
 
 	@Lob
 	@Column(length = 300000)
 	private String descripcion;
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Usuario usuario;
 
 	public Estudio() {
 	}
 
-	public Estudio(String titulo, Calendar fechaInicio, Calendar fechaFinalizacion, String institucion,
-			String descripcion) {
+	
+
+	public Estudio(Integer id, String titulo, String fechaInicio, String fechaFinalizacion, String institucion,
+			String descripcion, Usuario usuario) {
+		this.id = id;
 		this.titulo = titulo;
 		this.fechaInicio = fechaInicio;
 		this.fechaFinalizacion = fechaFinalizacion;
-		Institucion = institucion;
+		this.institucion = institucion;
 		this.descripcion = descripcion;
+		this.usuario = usuario;
 	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -67,28 +76,38 @@ public class Estudio {
 		this.titulo = titulo;
 	}
 
-	public Calendar getFechaInicio() {
+
+
+	public String getFechaInicio() {
 		return fechaInicio;
 	}
 
-	public void setFechaInicio(Calendar fechaInicio) {
+
+
+	public void setFechaInicio(String fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
 
-	public Calendar getFechaFinalizacion() {
+
+
+	public String getFechaFinalizacion() {
 		return fechaFinalizacion;
 	}
 
-	public void setFechaFinalizacion(Calendar fechaFinalizacion) {
+
+
+	public void setFechaFinalizacion(String fechaFinalizacion) {
 		this.fechaFinalizacion = fechaFinalizacion;
 	}
 
+
+
 	public String getInstitucion() {
-		return Institucion;
+		return institucion;
 	}
 
 	public void setInstitucion(String institucion) {
-		Institucion = institucion;
+		this.institucion = institucion;
 	}
 
 	public String getDescripcion() {

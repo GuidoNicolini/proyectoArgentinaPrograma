@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "experiencias")
 public class Experiencia {
@@ -26,30 +28,37 @@ public class Experiencia {
 
 	private String puesto;
 
-	@Temporal(TemporalType.DATE)
-	private Calendar fechaInicio;
+	
+	private String fechaInicio;
 
-	@Temporal(TemporalType.DATE)
-	private Calendar fechaFinalizacion;
+	
+	private String fechaFinalizacion;
 
 	@Lob
 	@Column(length = 300000)
 	private String descripcion;
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Usuario usuario;
 
 	public Experiencia() {
 	}
 
-	public Experiencia(String empresa, String puesto, Calendar fechaInicio, Calendar fechaFinalizacion,
-			String descripcion) {
+	
+
+	public Experiencia(Integer id, String empresa, String puesto, String fechaInicio, String fechaFinalizacion,
+			String descripcion, Usuario usuario) {
+		this.id = id;
 		this.empresa = empresa;
 		this.puesto = puesto;
 		this.fechaInicio = fechaInicio;
 		this.fechaFinalizacion = fechaFinalizacion;
 		this.descripcion = descripcion;
+		this.usuario = usuario;
 	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -75,21 +84,7 @@ public class Experiencia {
 		this.puesto = puesto;
 	}
 
-	public Calendar getFechaInicio() {
-		return fechaInicio;
-	}
-
-	public void setFechaInicio(Calendar fechaInicio) {
-		this.fechaInicio = fechaInicio;
-	}
-
-	public Calendar getFechaFinalizacion() {
-		return fechaFinalizacion;
-	}
-
-	public void setFechaFinalizacion(Calendar fechaFinalizacion) {
-		this.fechaFinalizacion = fechaFinalizacion;
-	}
+	
 
 	public String getDescripcion() {
 		return descripcion;
@@ -107,4 +102,30 @@ public class Experiencia {
 		this.usuario = usuario;
 	}
 
+
+
+	public String getFechaInicio() {
+		return fechaInicio;
+	}
+
+
+
+	public void setFechaInicio(String fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+
+
+
+	public String getFechaFinalizacion() {
+		return fechaFinalizacion;
+	}
+
+
+
+	public void setFechaFinalizacion(String fechaFinalizacion) {
+		this.fechaFinalizacion = fechaFinalizacion;
+	}
+
+	
+	
 }

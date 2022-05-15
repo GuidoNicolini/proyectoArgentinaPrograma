@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
@@ -23,26 +25,32 @@ public class Usuario {
 	
 	
 	@OneToOne(fetch = FetchType.LAZY)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@JoinColumn(name = "usuario_id")
 	private DatosUsuario datosUsuario;
 	
 	
 	@OneToMany(cascade = CascadeType.ALL , mappedBy = "usuario" , fetch = FetchType.LAZY)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private List<Experiencia> experiencias;
 	
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario" , fetch = FetchType.LAZY)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private List<Estudio> estudios;
 	
 	
 	@OneToMany(cascade = CascadeType.ALL , mappedBy = "usuario" , fetch = FetchType.LAZY)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private List<Habilidad> habilidades;
 	
 	
 	@OneToMany(cascade = CascadeType.ALL , mappedBy = "usuario" , fetch = FetchType.LAZY)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private List<Proyecto> proyectos;
 	
 	@OneToMany(cascade = CascadeType.ALL ,fetch = FetchType.LAZY)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@JoinColumn(name = "usuario_id")
 	private List<RedSocial> redesSociales;
 

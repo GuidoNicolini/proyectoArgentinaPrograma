@@ -9,5 +9,6 @@ public interface UsuarioDAO {
 
 	public List<Usuario> getListaUsuarios();
 	public Usuario getUsuario(Integer id);
+
 }
  

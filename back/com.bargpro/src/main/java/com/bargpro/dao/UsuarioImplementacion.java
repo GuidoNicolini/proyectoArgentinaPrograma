@@ -21,7 +21,7 @@ public class UsuarioImplementacion implements UsuarioDAO {
 	@Override
 	public List<Usuario> getListaUsuarios() {
 
-		String query = "SELECT a.id , a.datosUsuario.nombre FROM Usuario a";
+		String query = "FROM Usuario";
 		List<Usuario> listaUsuarios = em.createQuery(query).getResultList();
 
 		return listaUsuarios;
@@ -37,5 +37,8 @@ public class UsuarioImplementacion implements UsuarioDAO {
 
 		return usuario;
 	}
+
+
+	
 
 }

@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "proyectos")
 public class Proyecto {
@@ -28,11 +30,11 @@ public class Proyecto {
 
 	private String nombre;
 
-	@Temporal(TemporalType.DATE)
-	private Calendar fechaInicio;
+	
+	private String fechaInicio;
 
-	@Temporal(TemporalType.DATE)
-	private Calendar fechaFinalizacion;
+	
+	private String fechaFinalizacion;
 
 	@Lob
 	@Column(length = 300000)
@@ -41,6 +43,7 @@ public class Proyecto {
 	private String enlace;
 
 	@OneToMany(cascade = CascadeType.ALL ,fetch = FetchType.LAZY)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@JoinColumn(name = "proyecto_id")
 	private List<ImagenProyecto> imagenes;
 	
@@ -51,6 +54,24 @@ public class Proyecto {
 	public Usuario getUsuario() {
 		return usuario;
 	}
+	
+	
+
+
+
+	public Proyecto(Integer id, String nombre, String fechaInicio, String fechaFinalizacion, String descripcion,
+			String enlace, List<ImagenProyecto> imagenes, Usuario usuario) {
+		this.id = id;
+		this.nombre = nombre;
+		this.fechaInicio = fechaInicio;
+		this.fechaFinalizacion = fechaFinalizacion;
+		this.descripcion = descripcion;
+		this.enlace = enlace;
+		this.imagenes = imagenes;
+		this.usuario = usuario;
+	}
+
+
 
 
 
@@ -61,15 +82,7 @@ public class Proyecto {
 	public Proyecto() {
 	}
 
-	public Proyecto(String nombre, Calendar fechaInicio, Calendar fechaFinalizacion, String descripcion, String enlace,
-			List<ImagenProyecto> imagenes) {
-		this.nombre = nombre;
-		this.fechaInicio = fechaInicio;
-		this.fechaFinalizacion = fechaFinalizacion;
-		this.descripcion = descripcion;
-		this.enlace = enlace;
-		this.imagenes = imagenes;
-	}
+
 
 	public Integer getId() {
 		return id;
@@ -87,21 +100,7 @@ public class Proyecto {
 		this.nombre = nombre;
 	}
 
-	public Calendar getFechaInicio() {
-		return fechaInicio;
-	}
-
-	public void setFechaInicio(Calendar fechaInicio) {
-		this.fechaInicio = fechaInicio;
-	}
-
-	public Calendar getFechaFinalizacion() {
-		return fechaFinalizacion;
-	}
-
-	public void setFechaFinalizacion(Calendar fechaFinalizacion) {
-		this.fechaFinalizacion = fechaFinalizacion;
-	}
+	
 
 	public String getDescripcion() {
 		return descripcion;
@@ -125,6 +124,38 @@ public class Proyecto {
 
 	public void setImagenes(List<ImagenProyecto> imagenes) {
 		this.imagenes = imagenes;
+	}
+
+
+
+
+
+	public String getFechaInicio() {
+		return fechaInicio;
+	}
+
+
+
+
+
+	public void setFechaInicio(String fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+
+
+
+
+
+	public String getFechaFinalizacion() {
+		return fechaFinalizacion;
+	}
+
+
+
+
+
+	public void setFechaFinalizacion(String fechaFinalizacion) {
+		this.fechaFinalizacion = fechaFinalizacion;
 	}
 	
 	
