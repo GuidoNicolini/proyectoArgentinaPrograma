@@ -1,36 +1,30 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 import { Usuario } from '../entidades/Usuario';
+import { DatosUsuario } from '../entidades/DatosUsuario';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
-
 export class DatosService {
-
   constructor(private http: HttpClient) {}
 
-
-
-  getUsuarios(){
-
-    return this.http.get("http://localhost:8080/api/usuarios");
-    
-      }
-
-  crearUsuario(usuario:Usuario){
-
-    this.http.post("http://localhost:8080/api/usuarios",usuario).subscribe(
-
-    response => console.log("Se ha guardado con exito: " + response),
-
-    error => console.log("error: " + error),
-    
-    )
-
+  getUsuarios() {
+    return this.http.get('http://localhost:8080/api/usuarios');
   }
 
-    
-}
+  getUsuario(id: number) {
+    return this.http.get(`http://localhost:8080/api/usuarios/${id}`);
+  }
 
+  crearUsuario(usuario: Usuario) {
+    this.http.post('http://localhost:8080/api/usuarios', usuario)
+    .subscribe();
+  }
+
+  cambiarUsuario(usuario: Usuario) {
+    this.http
+      .patch('http://localhost:8080/api/usuarios', usuario)
+      .subscribe();
+  }
+}

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -63,6 +64,14 @@ public class UsuarioController {
 		
 	}
 
+	@PatchMapping("usuarios")
+	@Transactional
+	public void modificarDatos(@RequestBody Usuario usuario) {
+		
+		dao.modificarUsuario(usuario);
+
+	}
+	
 
 	@GetMapping("/test")
 	@Transactional
@@ -76,10 +85,10 @@ public class UsuarioController {
 			DatosUsuario du = new DatosUsuario();
 
 			
-			du.setNombre("Jamiz");
-			du.setApellido("Inmortal");
+			du.setNombre("ratona");
+			du.setApellido("imnotarial");
 			
-			em.persist(du);
+			//em.persist(du);
 			
 			usuario.setDatosUsuario(du);
 			

@@ -24,7 +24,7 @@ public class Usuario {
 	private Integer id;
 	
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@JoinColumn(name = "usuario_id")
 	private DatosUsuario datosUsuario;
