@@ -1,0 +1,20 @@
+<form (ngSubmit)="modificarHabilidad()">
+  <input
+    type="text"
+    placeholder="Nombre"
+    name="nombre"
+    [(ngModel)]="habilidad.nombre"
+  />
+
+  <br />
+  <br />
+
+  <input 
+  type="number" 
+  placeholder="Nivel" 
+  name="nivel"
+  [(ngModel)]="habilidad.nivel"
+  />
+
+  <button type="submit">Agregar habilidad</button>
+</form>

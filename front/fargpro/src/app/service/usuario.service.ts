@@ -1,35 +1,35 @@
 import { Injectable } from '@angular/core';
+import { Proyecto } from '../entidades/Proyecto';
 import { Usuario } from '../entidades/Usuario';
 import { DatosService } from './datos.service';
-import { DatosUsuario } from '../entidades/DatosUsuario';
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsuarioService {
+  constructor(private datosService: DatosService) {}
 
-  constructor(private datosService: DatosService) { }
+  obtenerUsuarios() {
+    return this.datosService.getUsuarios();
+  }
 
-obtenerUsuarios(){
+  obtenerUsuario(id: number) {
+    return this.datosService.getUsuario(id);
+  }
 
-  return this.datosService.getUsuarios();
-}
+  crearUsuario(usuario: Usuario): void {
+    this.datosService.crearUsuario(usuario);
+  }
 
-obtenerUsuario(){
+  modificarUsuario(usuario: Usuario): void {
+    this.datosService.cambiarUsuario(usuario);
+  }
 
-  return this.datosService.getUsuario();
-}
+ /* modificarProyecto(proyecto: Proyecto): void {
+    this.datosService.cambiarProyecto(proyecto);
+  }
 
-crearUsuario(usuario:Usuario):void{
-
-
-  this.datosService.crearUsuario(usuario);
-  
-}
-
-modificarUsuario(usuario:Usuario):void{
-
-  this.datosService.cambiarUsuario(usuario);
-
-}
-
+  obtenerProyecto(id: number) {
+    return this.datosService.getProyecto(id);
+  }*/
 }

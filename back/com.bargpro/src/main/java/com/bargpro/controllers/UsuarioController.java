@@ -18,15 +18,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.bargpro.dao.UsuarioDAO;
-import com.bargpro.entities.DatosUsuario;
-import com.bargpro.entities.Estudio;
-import com.bargpro.entities.Experiencia;
-import com.bargpro.entities.Habilidad;
-import com.bargpro.entities.ImagenProyecto;
 import com.bargpro.entities.Proyecto;
-import com.bargpro.entities.RedSocial;
+
 import com.bargpro.entities.Usuario;
-import com.bargpro.services.CreacionDePerfilPropio;
+
 
 @RestController
 @RequestMapping("api")
@@ -73,30 +68,23 @@ public class UsuarioController {
 	}
 	
 
-	@GetMapping("/test")
+@PatchMapping("/proyectos")
 	@Transactional
-	public void agregarTest() {
-		
-	
-			
-			
-			Usuario usuario = new Usuario();
-			
-			DatosUsuario du = new DatosUsuario();
+	public void modificarImagenProyecto(@RequestBody Proyecto proyecto) {
 
-			
-			du.setNombre("ratona");
-			du.setApellido("imnotarial");
-			
-			//em.persist(du);
-			
-			usuario.setDatosUsuario(du);
-			
-			
-			
-			em.persist(usuario);
-			
-		
+		dao.modificarImagenProyectoUsuario(proyecto);
+
 	}
 
+	@GetMapping("/proyectos/{id}")
+	@Transactional
+	public Proyecto getProyecto(@PathVariable Integer id) {
+
+		return dao.getProyecto(id);
+
+	}
+
+
 }
+
+

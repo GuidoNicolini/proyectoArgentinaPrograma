@@ -9,7 +9,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bargpro.entities.DatosUsuario;
+import com.bargpro.entities.Proyecto;
 import com.bargpro.entities.Usuario;
+import com.bargpro.services.Utilidades;
 
 @Repository
 @Transactional
@@ -46,8 +48,26 @@ public class UsuarioImplementacion implements UsuarioDAO {
 	@Override
 	@Transactional
 	public void modificarUsuario(Usuario usuario) {
+		
+		Utilidades.setearUsuarioEnAtributosDependientes(usuario);
 		em.merge(usuario);
 
+	}
+
+	@Override
+	@Transactional
+	public Proyecto getProyecto(Integer id) {
+		
+		return em.find(Proyecto.class, id);
+		
+	}
+
+	@Override
+	@Transactional
+	public void modificarImagenProyectoUsuario(Proyecto proyecto) {
+	
+		em.merge(proyecto);
+		
 	}
 
 }

@@ -1,18 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HabilidadesComponent } from './habilidades/habilidades.component';
+import { HabilidadFormularioComponent } from './habilidad-formulario/habilidad-formulario.component';
+import { FormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [
-    HabilidadesComponent
+    HabilidadesComponent,
+    HabilidadFormularioComponent
   ],
   exports:[
 HabilidadesComponent
   ],
   imports: [
-    CommonModule
+ 
+  CommonModule,
+    FormsModule
   ]
 })
 export class HabilidadModule { }

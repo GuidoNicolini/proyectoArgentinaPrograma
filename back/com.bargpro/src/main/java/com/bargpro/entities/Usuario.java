@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -35,7 +36,7 @@ public class Usuario {
 	private List<Experiencia> experiencias;
 	
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario" , fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario" , fetch = FetchType.LAZY,  orphanRemoval = true)
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private List<Estudio> estudios;
 	

@@ -1,0 +1,52 @@
+<form (ngSubmit)="modificarProyecto()">
+    <input
+      type="text"
+      placeholder="Nombre"
+      name="nombre"
+      [(ngModel)]="proyecto.nombre"
+    />
+  
+    <br />
+    <br />
+  
+    <input
+      type="text"
+      placeholder="Descripción"
+      name="descripcion"
+      [(ngModel)]="proyecto.descripcion"
+    />
+  
+  
+    <br />
+    <br />
+  
+    <input
+      type="text"
+      placeholder="Fecha de inicio"
+      name="fechaInicio"
+      [(ngModel)]="proyecto.fechaInicio"
+    />
+  
+    <br />
+    <br />
+  
+    <input
+      type="text"
+      placeholder="Fecha de Finalización"
+      name="fechaFinalizacion"
+      [(ngModel)]="proyecto.fechaFinalizacion"
+    />
+  
+    <br />
+    <br />
+
+    <input
+    type="text"
+    placeholder="Enlace"
+    name="enlace"
+    [(ngModel)]="proyecto.enlace"
+  />
+  
+    <button type="submit">Agregar Proyecto</button>
+  </form>
+  

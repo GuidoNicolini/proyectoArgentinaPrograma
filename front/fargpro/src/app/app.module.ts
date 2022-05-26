@@ -9,13 +9,11 @@ import { ExperienciaModule } from './modulos/experiencia/experiencia.module';
 import { HabilidadModule } from './modulos/habilidad/habilidad.module';
 import { HeadersModule } from './modulos/headers/headers.module';
 import { ProyectoModule } from './modulos/proyecto/proyecto.module';
-import { RegistroComponent } from './formularios/registro/registro.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegistroComponent
-    
+
   ],
   imports: [
     BrowserModule,

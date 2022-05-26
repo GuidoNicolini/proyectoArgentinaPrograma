@@ -1,0 +1,53 @@
+<form (ngSubmit)="modificarExperiencia()">
+  <input
+    type="text"
+    placeholder="Puesto"
+    name="puesto"
+    [(ngModel)]="experiencia.puesto"
+  />
+
+  <br />
+  <br />
+
+  <input
+    type="text"
+    placeholder="Institucion"
+    name="institucion"
+    [(ngModel)]="experiencia.empresa"
+  />
+
+  <br />
+  <br />
+
+  <input
+    type="text"
+    placeholder="Descripción"
+    name="descripcion"
+    [(ngModel)]="experiencia.descripcion"
+  />
+
+  <br />
+  <br />
+
+  <input
+    type="text"
+    placeholder="Fecha de inicio"
+    name="fechaInicio"
+    [(ngModel)]="experiencia.fechaInicio"
+  />
+
+  <br />
+  <br />
+
+  <input
+    type="text"
+    placeholder="Fecha de Finalización"
+    name="fechaFinalizacion"
+    [(ngModel)]="experiencia.fechaFinalizacion"
+  />
+
+  <br />
+  <br />
+
+  <button type="submit">Agregar experiencia</button>
+</form>
