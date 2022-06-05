@@ -29,7 +29,7 @@ export class ProyectoFormularioComponent implements OnInit {
 
   modificarProyecto(){
 
-    console.log(this.usuario);
+   
     console.log('listo');
     this.usuario.proyectos.push(this.proyecto);
     this.usuarioService.modificarUsuario(this.usuario);

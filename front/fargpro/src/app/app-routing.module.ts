@@ -7,7 +7,7 @@ import { ProyectoFormularioComponent } from './modulos/proyecto/proyecto-formula
 import { ProyectosComponent } from './modulos/proyecto/proyectos/proyectos.component';
 const routes: Routes = [
   {
-    path: 'estudio/:id', component: EstudioFormularioComponent 
+    path: 'estudio/:id', component: ImagenProyectoFormularioComponent 
   },
 ];
 

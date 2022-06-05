@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,9 +24,10 @@ import com.bargpro.entities.Proyecto;
 import com.bargpro.entities.Usuario;
 
 
+@Secured("ROLE_USER")
+@CrossOrigin("http://localhost:4200/")
 @RestController
 @RequestMapping("api")
-@CrossOrigin("http://localhost:4200/")
 public class UsuarioController {
 
 	@Autowired
@@ -68,14 +70,14 @@ public class UsuarioController {
 	}
 	
 
-@PatchMapping("/proyectos")
+	@PatchMapping("/proyectos")
 	@Transactional
 	public void modificarImagenProyecto(@RequestBody Proyecto proyecto) {
 
 		dao.modificarImagenProyectoUsuario(proyecto);
 
 	}
-
+	
 	@GetMapping("/proyectos/{id}")
 	@Transactional
 	public Proyecto getProyecto(@PathVariable Integer id) {

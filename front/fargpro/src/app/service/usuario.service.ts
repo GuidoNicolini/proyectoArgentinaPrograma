@@ -25,11 +25,11 @@ export class UsuarioService {
     this.datosService.cambiarUsuario(usuario);
   }
 
- /* modificarProyecto(proyecto: Proyecto): void {
-    this.datosService.cambiarProyecto(proyecto);
+ modificarProyecto(proyecto: Proyecto): void {
+    this.datosService.modificarProyecto(proyecto);
   }
 
   obtenerProyecto(id: number) {
     return this.datosService.getProyecto(id);
-  }*/
+  }
 }
