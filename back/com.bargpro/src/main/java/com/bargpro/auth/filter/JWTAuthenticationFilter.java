@@ -38,21 +38,17 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException {
+
 		
-		String username = obtainUsername(request);
-		String password = obtainPassword(request);
-		
-		if(username != null && password !=null) {
-			logger.info("Username desde request parameter (form-data): " + username);
-			logger.info("Password desde request parameter (form-data): " + password);
+			String username = "";
+			String password = "";
 			
-		} else {
 			com.bargpro.entities.User user = null;
 			try {
 				
 				user = new ObjectMapper().readValue(request.getInputStream(),com.bargpro.entities.User.class);
 				
-				username = user.getUsername();
+				 username = user.getUsername();
 				password = user.getPassword();
 				
 				logger.info("Username desde request InputStream (raw): " + username);
@@ -65,7 +61,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}
+	
 
 		username = username.trim();
 		

@@ -39,7 +39,6 @@ public static final String SECRET = Base64Utils.encodeToString("Alguna.Clave.Sec
 		Claims claims = Jwts.claims();
 		claims.put("authorities", new ObjectMapper().writeValueAsString(roles));
 
-		@SuppressWarnings("deprecation")
 		String token = Jwts.builder().setClaims(claims).setSubject(username)
 				.signWith(SignatureAlgorithm.HS512, SECRET.getBytes()).setIssuedAt(new Date())
 				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_DATE)).compact();
@@ -62,7 +61,6 @@ public static final String SECRET = Base64Utils.encodeToString("Alguna.Clave.Sec
 
 	@Override
 	public Claims getClaims(String token) {
-		@SuppressWarnings("deprecation")
 		Claims claims = Jwts.parser().setSigningKey(SECRET.getBytes())
 				.parseClaimsJws(resolve(token)).getBody();
 		return claims;
