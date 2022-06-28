@@ -16,6 +16,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.bargpro.auth.service.JWTService;
 import com.bargpro.auth.service.JWTServiceImpl;
@@ -23,11 +24,14 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+
+
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 
 	private AuthenticationManager authenticationManager;
 	private JWTService jwtService;
 
+	
 	public JWTAuthenticationFilter(AuthenticationManager authenticationManager, JWTService jwtService) {
 		this.authenticationManager = authenticationManager;
 		setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/api/login", "POST"));
@@ -48,11 +52,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 				
 				user = new ObjectMapper().readValue(request.getInputStream(),com.bargpro.entities.User.class);
 				
-				 username = user.getUsername();
+				username = user.getUsername();
 				password = user.getPassword();
 				
-				logger.info("Username desde request InputStream (raw): " + username);
-				logger.info("Password desde request InputStream (raw): " + password);
 				
 			} catch (JsonParseException e) {
 				e.printStackTrace();

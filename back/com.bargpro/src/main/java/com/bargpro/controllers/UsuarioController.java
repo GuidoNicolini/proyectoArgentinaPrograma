@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,15 +21,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.bargpro.dao.UsuarioDAO;
 import com.bargpro.entities.Proyecto;
-
+import com.bargpro.entities.User;
 import com.bargpro.entities.Usuario;
 
 
-@Secured("ROLE_USER")
+
 @CrossOrigin("http://localhost:4200/")
 @RestController
 @RequestMapping("api")
 public class UsuarioController {
+	
+
 
 	@Autowired
 	private UsuarioDAO dao;
@@ -43,7 +46,7 @@ public class UsuarioController {
 		return dao.getListaUsuarios();
 
 	}
-
+	
 	@GetMapping("/usuarios/{id}")
 	@Transactional
 	public Usuario getUsuario(@PathVariable Integer id) {
@@ -52,7 +55,7 @@ public class UsuarioController {
 
 	}
 	
-	
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/usuarios")
 	@Transactional
 	public void crearUsuario(@RequestBody Usuario usuario) {
@@ -60,7 +63,7 @@ public class UsuarioController {
 		dao.guardarUsuario(usuario);
 		
 	}
-
+	@Secured("ROLE_ADMIN")
 	@PatchMapping("usuarios")
 	@Transactional
 	public void modificarDatos(@RequestBody Usuario usuario) {
@@ -69,7 +72,7 @@ public class UsuarioController {
 
 	}
 	
-
+	@Secured("ROLE_ADMIN")
 	@PatchMapping("/proyectos")
 	@Transactional
 	public void modificarImagenProyecto(@RequestBody Proyecto proyecto) {
@@ -85,6 +88,7 @@ public class UsuarioController {
 		return dao.getProyecto(id);
 
 	}
+
 
 
 }

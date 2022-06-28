@@ -5,11 +5,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bargpro.entities.DatosUsuario;
 import com.bargpro.entities.Proyecto;
+import com.bargpro.entities.User;
 import com.bargpro.entities.Usuario;
 import com.bargpro.services.Utilidades;
 
@@ -19,6 +22,9 @@ public class UsuarioImplementacion implements UsuarioDAO {
 
 	@PersistenceContext
 	private EntityManager em;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	@Transactional
 	@Override
@@ -68,6 +74,22 @@ public class UsuarioImplementacion implements UsuarioDAO {
 	
 		em.merge(proyecto);
 		
+	}
+	
+	@Override
+	@Transactional
+	public void guardarUser(User user) {
+
+		String contra = passwordEncoder.encode(user.getPassword());
+		
+		
+		user.setPassword(contra);
+		
+		
+		
+		
+		em.persist(user);
+
 	}
 
 }

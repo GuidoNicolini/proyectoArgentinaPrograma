@@ -9,10 +9,12 @@ import { ExperienciaModule } from './modulos/experiencia/experiencia.module';
 import { HabilidadModule } from './modulos/habilidad/habilidad.module';
 import { HeadersModule } from './modulos/headers/headers.module';
 import { ProyectoModule } from './modulos/proyecto/proyecto.module';
+import { LoginComponentComponent } from './modulos/login/login-component/login-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponentComponent,
 
   ],
   imports: [

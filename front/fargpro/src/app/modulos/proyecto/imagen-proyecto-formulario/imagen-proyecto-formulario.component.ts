@@ -25,14 +25,11 @@ export class ImagenProyectoFormularioComponent /*implements OnInit*/ {
     let id = Number(this.ruta.snapshot.paramMap.get('id'));
 
     this.usuarioService.obtenerProyecto(id).subscribe((response) => {
-      console.log("mira esta respuesta: " + response)
       this.proyecto = <Proyecto>response;
     });
   }
 
   modificarImagenProyecto() {
-    console.log('listo');
-    console.log(this.proyecto);
 
     this.proyecto.imagenes.push(this.imagenProyecto);
     this.usuarioService.modificarProyecto(this.proyecto);

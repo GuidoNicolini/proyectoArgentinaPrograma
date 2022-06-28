@@ -1,0 +1,23 @@
+<form (ngSubmit)="onEnviar($event)">
+    <input
+      type="text"
+      placeholder="Usuario"
+      name="username"
+      [(ngModel)]="user.username"
+    />
+  
+    <br />
+    <br />
+  
+    <input
+      type="text"
+      placeholder="Contraseña"
+      name="password"
+      [(ngModel)]="user.password"
+    />
+  
+  
+  
+    <button type="submit">login</button>
+  </form>
+  

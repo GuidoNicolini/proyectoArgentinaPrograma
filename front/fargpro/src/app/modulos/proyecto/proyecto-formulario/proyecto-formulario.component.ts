@@ -22,7 +22,6 @@ export class ProyectoFormularioComponent implements OnInit {
     let id = Number(this.ruta.snapshot.paramMap.get('id'));
 
     this.usuarioService.obtenerUsuario(id).subscribe((response) => {
-      console.log(response);
       this.usuario = <Usuario>response;
     });
   }

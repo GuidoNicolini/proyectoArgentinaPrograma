@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Usuario } from '../entidades/Usuario';
 import { Observable } from 'rxjs';
 import { Proyecto } from '../entidades/Proyecto';
+import { User } from '../entidades/User';
 
 @Injectable({
   providedIn: 'root',
@@ -39,6 +40,8 @@ export class DatosService {
 
     return this.http.get(`http://localhost:8080/api/proyectos/${id}`);
   }
+
+
 
 
 }
